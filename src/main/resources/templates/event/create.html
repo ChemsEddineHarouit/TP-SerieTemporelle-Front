@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout d'un évenement</title>
+</head>
+<body>
+    <h2>Création d'un évenement</h2>
+    <form th:action="${createUrl}" method="post" th:object="${eventIn}">
+        <br>
+        <label for="valeur">Valeur</label> <br>
+        <input type="number"  th:field="*{valeur}" id="valeur" placeholder="Valeur"> <br>
+        <br>
+        <label for="date">Date</label> <br>
+        <input type="date" th:field="*{date}" id="date"> <br>
+        <br>
+        <label for="commentaire">Commentaire</label> <br>
+        <input type="text" th:field="*{commentaire}" id="commentaire"> <br>
+        <br>
+        <br>
+        <input type="submit" value="Ajouter un évenement">
+    </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Erreur </title>
+</head>
+<body>
+<div th:switch="${exception}">
+    <h2 th:case="null">Erreur inconnue</h2>
+    <div th:case="*">
+        <h2>Error: <span th:text="${exception.getStatus()}"></span></h2> <br> <br>  <br>
+        at: <span th:text="${exception.getTimestamp()}"></span>
+        <p th:text="${exception.getMessage()}"></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout de Serie Temporelle</title>
+</head>
+<body>
+    <h2>Création d'une série temporelle</h2>
+    <form th:action="${createUrl}" method="post" th:object="${serieTemporelleIn}">
+        <br>
+        <label for="titre">Titre</label> <br>
+        <input type="text"  th:field="*{titre}" id="titre" placeholder="Titre"> <br>
+        <br>
+        <label for="description">Description</label> <br>
+        <input type="text" th:field="*{description}" id="description" placeholder="description"> <br>
+        <br>
+        <br>
+        <input type="submit" value="Ajouter une série temporelle">
+    </form>
+</body>
+</html>

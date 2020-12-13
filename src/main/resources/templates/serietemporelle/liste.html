@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Serie Temporelle</title>
+</head>
+<body>
+<div th:switch="${seriestemporelles}">
+    <h2 th:case="null">liste Vide</h2>
+    <div th:case="*">
+        <h2>Series Temporelles</h2>
+        <table width="1px">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Détail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="serietemporelle : ${seriestemporelles}">
+                <td th:text="${serietemporelle.getTitre()}"></td>
+                <td th:text="${serietemporelle.description}"></td>
+                <td><a th:href="@{/seriestemporelles/detail/{id}(id=${serietemporelle.id})}">Détail</a></td>
+                <td><a th:href="@{/seriestemporelles/modifier/form/{id}(id=${serietemporelle.id})}">Edit</a></td>
+                <td><a th:href="@{/seriestemporelles/supprimer/{id}(id=${serietemporelle.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br><br>
+    <a th:href="@{/seriestemporelles/create/form/1}">Créer une série temporelle</a> <br><br>
+    <a th:href="@{/}">Retour à l'accueil</a>
+</div>
+</body>
+</html>

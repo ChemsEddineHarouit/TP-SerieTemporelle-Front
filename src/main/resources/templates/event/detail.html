@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenement</title>
+</head>
+<body>
+    <h2> Evenement: <span th:text="${event.getId()}"></span></h2>
+    <h3> Valeur: <span th:text="${event.getValeur()}"></span></h3>
+    <h3> Date: <span th:text="${event.getDate()}"></span></h3>
+    <p th:text="${event.getCommentaire()}"></p>
+    <a th:href="@{/seriestemporelles/detail/{id}(id=${event.getSerieTemporelle().id})}">Retour à la série temporelle</a>
+</body>
+</html>

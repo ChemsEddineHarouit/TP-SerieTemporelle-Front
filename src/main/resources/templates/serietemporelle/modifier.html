@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Modification de Série Temporelle</title>
+</head>
+<body>
+    <h2>Modification de la série temporelle: <span th:text="${serieTemporelleIn.getId()}"></span></h2>
+    <form th:action="${updateUrl}" method="POST" th:object="${serieTemporelleIn}">
+        <br>
+        <label for="titre">Titre</label> <br>
+        <input type="text"  th:field="*{titre}" id="titre"  th:value="${serieTemporelleIn.getTitre()}"> <br>
+        <br>
+        <label for="description">Description</label> <br>
+        <input type="text"  th:field="*{description}" id="description" th:value="${serieTemporelleIn.getDescription()}"> <br>
+        <br>
+        <br>
+        <input type="submit" value="Modifier la série temporelle">
+    </form>
+</body>
+</html>

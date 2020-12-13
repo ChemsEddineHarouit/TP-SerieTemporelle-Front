@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Serie Temporelle</title>
+</head>
+<body>
+    <h2> Serie temporelle: <span th:text="${serieTemporelle.getId()}"></span></h2>
+    <h3> Titre: <span th:text="${serieTemporelle.getTitre()}"></span></h3>
+    <p th:text="${serieTemporelle.getDescription()}"></p>
+    <h3>Evenements:</h3>
+    <div th:switch="${events}">
+        <h2 th:case="null">liste Vide</h2>
+        <div th:case="*">
+            <table width="1px">
+                <thead>
+                <tr>
+                    <th>Valeur</th>
+                    <th>Date</th>
+                    <th>Commentaire</th>
+                    <th>Detail</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="event : ${events}">
+                    <td th:text="${event.getValeur()}"></td>
+                    <td th:text="${event.getDate()}"></td>
+                    <td th:text="${event.getCommentaire()}"></td>
+                    <td><a th:href="@{/events/detail/{id}(id=${event.id})}">Détail</a></td>
+                    <td><a th:href="@{/events/modifier/form/{id}(id=${event.id})}">Edit</a></td>
+                    <td><a th:href="@{/events/supprimer/{id}(id=${event.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <a th:href="@{/seriestemporelles/{serieTemporelleId}/events/create/form/(serieTemporelleId=${serieTemporelle.getId()})}">Créer un évenement</a> <br><br>
+    </div>
+    <a th:href="@{/seriestemporelles/}">Retour à la liste des séries temporelles</a>
+</body>
+</html>

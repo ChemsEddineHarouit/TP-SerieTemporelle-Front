@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout d'un Utilisateur</title>
+</head>
+<body>
+    <h2>Création d'un utilisateur</h2>
+    <form th:action="${createUrl}" method="post" th:object="${userIn}">
+        <br>
+        <label for="username">Pseudo</label> <br>
+        <input type="text"  th:field="*{username}" id="username" placeholder="Mon_Pseudo"> <br>
+        <br>
+        <label for="password">Mot de passe</label> <br>
+        <input type="text" th:field="*{password}" id="password" placeholder="Mon_Passe"> <br>
+        <br>
+        <br>
+        <input type="submit" value="Ajouter un utilisateur">
+    </form>
+</body>
+</html>
