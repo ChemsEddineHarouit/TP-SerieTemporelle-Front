@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Serie Temporelle</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script>
+            var event_values = [];
+            var event_dates = [];
+            var COLORS_T = [];
+            var COLORS_B = [];
+    </script>
 </head>
 <body>
     <h2> Serie temporelle: <span th:text="${serieTemporelle.getId()}"></span></h2>
@@ -25,6 +33,16 @@
                 </thead>
                 <tbody>
                 <tr th:each="event : ${events}">
+                    <script th:inline="javascript">
+                        value = [[${event.getValeur()}]];
+                        event_values.push(value);
+                        event_dates.push([[${event.getDate()}]]);
+                        red = (value%5) *50;
+                        green = (value%3) *80;
+                        blue = (value%13) *19;
+                        COLORS_T.push('rgba('+red+','+green+','+blue+',0.2)');
+                        COLORS_B.push('rgba('+red+','+green+','+blue+',1)');
+                    </script>
                     <td th:text="${event.getValeur()}"></td>
                     <td th:text="${event.getDate()}"></td>
                     <td th:text="${event.getCommentaire()}"></td>
@@ -39,5 +57,32 @@
         <a th:href="@{/seriestemporelles/{serieTemporelleId}/events/create/form/(serieTemporelleId=${serieTemporelle.getId()})}">Créer un évenement</a> <br><br>
     </div>
     <a th:href="@{/seriestemporelles/}">Retour à la liste des séries temporelles</a>
+    <canvas id="myChart" width="400" height="100"></canvas>
+    <script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: event_dates,
+        datasets: [{
+            label: 'Values',
+            data: event_values,
+            backgroundColor: COLORS_T,
+            borderColor: COLORS_B,
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
 </body>
 </html>
